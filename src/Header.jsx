@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Header = () => {
       const username = getCookie('user');
       if (username) {
         try {
-          const response = await fetch(`http://localhost:7211/users/${username}`);
+          const response = await fetch(`${scheme}://${host}:${port}/users/${username}`);
           if (response.ok) {
             const data = await response.json();
             setUser(username);

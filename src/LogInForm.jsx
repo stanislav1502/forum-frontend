@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const LogInForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -7,7 +8,7 @@ const LogInForm = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:7211/users/${username}/${password}`);
+      const response = await fetch(`${scheme}://${host}:${port}/users/${username}/${password}`);
       if (response.ok) {
         // Login successful
         onLogin(username); // Pass the username to onLogin

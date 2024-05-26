@@ -1,3 +1,4 @@
+import { scheme, host, port } from './assets/siteurl.jsx';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ const AdminPanel = () => {
 
   const fetchUsers = async (page, pageSize) => {
     try {
-      const response = await fetch(`http://localhost:7211/users?page=${page}&pageSize=${pageSize}`);
+      const response = await fetch(`${scheme}://${host}:${port}/users?page=${page}&pageSize=${pageSize}`);
       if (response.ok) {
         const data = await response.json();
         setUsers(data);
@@ -39,7 +40,7 @@ const AdminPanel = () => {
   const handleSave = async (index) => {
     const userToUpdate = users[index];
     try {
-      const response = await fetch(`http://localhost:7211/users/${userToUpdate.username}`, {
+      const response = await fetch(`${scheme}://${host}:${port}/users/${userToUpdate.username}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -61,7 +62,7 @@ const AdminPanel = () => {
       const username = getCookie('user');
       if (username) {
         try {
-          const response = await fetch(`http://localhost:7211/users/${username}`);
+          const response = await fetch(`${scheme}://${host}:${port}/users/${username}`);
           if (response.ok) {
             const data = await response.json();
             setUser(username);

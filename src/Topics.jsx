@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Topic from './Topic';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const Topics = () => {
   const [topics, setTopics] = useState([]);
@@ -12,7 +13,7 @@ const Topics = () => {
 
   const fetchTopics = async (page) => {
     try {
-      const response = await fetch(`http://localhost:7211/topics?page=${page}&pageSize=${pageSize}`);
+      const response = await fetch(`${scheme}://${host}:${port}/topics?page=${page}&pageSize=${pageSize}`);
       if (response.ok) {
         const data = await response.json();
         setTopics(data);

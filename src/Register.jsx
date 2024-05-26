@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:7211/users', {
+      const response = await fetch(`${scheme}://${host}:${port}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

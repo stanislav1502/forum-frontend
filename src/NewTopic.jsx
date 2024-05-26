@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const NewTopic = () => {
   const [title, setTitle] = useState('');
@@ -24,7 +25,7 @@ const NewTopic = () => {
 
     const fetchUserID = async () => {
       try {
-        const response = await fetch(`http://localhost:7211/users/${user}`);
+        const response = await fetch(`${scheme}://${host}:${port}/users/${user}`);
         if (response.ok) {
           const userData = await response.json();
           setUserID(userData.userID);
@@ -49,7 +50,7 @@ const NewTopic = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:7211/topics', {
+      const response = await fetch(`${scheme}://${host}:${port}/topics`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

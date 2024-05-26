@@ -1,5 +1,6 @@
 // ReplyForm.jsx
 import React, { useState } from 'react';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const ReplyForm = ({ topicID, onReplySubmit }) => {
   const [replyText, setReplyText] = useState('');
@@ -17,7 +18,7 @@ const ReplyForm = ({ topicID, onReplySubmit }) => {
     e.preventDefault();
     
     try {
-      const response = await fetch(`http://localhost:7211/users/${user}`);
+      const response = await fetch(`${scheme}://${host}:${port}/users/${user}`);
       if (response.ok) {
         const userData = await response.json();
         const userID = userData.userID;
@@ -26,7 +27,7 @@ const ReplyForm = ({ topicID, onReplySubmit }) => {
           topicID: topicID,
           userID: userID
         };
-        const postResponse = await fetch('http://localhost:7211/replies', {
+        const postResponse = await fetch(`${scheme}://${host}:${port}/replies`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReplyForm from './ReplyForm';
+import { scheme, host, port } from './assets/siteurl.jsx';
 
 const TopicDetails = () => {
   const { id } = useParams();
@@ -18,12 +19,12 @@ const TopicDetails = () => {
   useEffect(() => {
     const fetchTopic = async () => {
       try {
-        const response = await fetch(`http://localhost:7211/topics/${id}`);
+        const response = await fetch(`${scheme}://${host}:${port}/topics/${id}`);
         if (response.ok) {
           const data = await response.json();
           setTopic(data);
           setEditTopicText(data.topic.description);
-          await fetch(`http://localhost:7211/topics/${id}`, {
+          await fetch(`${scheme}://${host}:${port}/topics/${id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -43,7 +44,7 @@ const TopicDetails = () => {
 
     const fetchReplies = async (page) => {
       try {
-        const response = await fetch(`http://localhost:7211/replies/${id}?page=${page}&pageSize=${pageSize}`);
+        const response = await fetch(`${scheme}://${host}:${port}/replies/${id}?page=${page}&pageSize=${pageSize}`);
         if (response.ok) {
           const data = await response.json();
           setReplies(data);
@@ -65,7 +66,7 @@ const TopicDetails = () => {
       if (userCookie) {
         const username = userCookie.split('=')[1];
         try {
-          const response = await fetch(`http://localhost:7211/users/${username}`);
+          const response = await fetch(`${scheme}://${host}:${port}/users/${username}`);
           if (response.ok) {
             const userData = await response.json();
             setCurrentUser(userData);
@@ -84,7 +85,7 @@ const TopicDetails = () => {
 
   const handleDeleteReply = async (replyID) => {
     try {
-      const response = await fetch(`http://localhost:7211/replies/${replyID}`, {
+      const response = await fetch(`${scheme}://${host}:${port}/replies/${replyID}`, {
         method: 'DELETE'
       });
       if (response.ok) {
@@ -105,7 +106,7 @@ const TopicDetails = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:7211/replies/${editingReply}`, {
+      const response = await fetch(`${scheme}://${host}:${port}/replies/${editingReply}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -145,7 +146,7 @@ const TopicDetails = () => {
   const handleEditTopicSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:7211/topics/${id}`, {
+      const response = await fetch(`${scheme}://${host}:${port}/topics/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -180,7 +181,7 @@ const TopicDetails = () => {
 
   const handleDeleteTopic = async () => {
     try {
-      const response = await fetch(`http://localhost:7211/topics/${id}`, {
+      const response = await fetch(`${scheme}://${host}:${port}/topics/${id}`, {
         method: 'DELETE'
       });
       if (response.ok) {
@@ -199,7 +200,7 @@ const TopicDetails = () => {
 
   const fetchReplies = async (page) => {
     try {
-      const response = await fetch(`http://localhost:7211/replies/${id}?page=${page}&pageSize=${pageSize}`);
+      const response = await fetch(`${scheme}://${host}:${port}/replies/${id}?page=${page}&pageSize=${pageSize}`);
       if (response.ok) {
         const data = await response.json();
         setReplies(data);
