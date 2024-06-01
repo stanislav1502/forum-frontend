@@ -32,4 +32,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: your_dockerhub_username/your_repository_name:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/mse2024-forum-fe:latest
