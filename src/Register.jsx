@@ -20,7 +20,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://localhost:7211/users', {
+      const response = await fetch('http://localhost:7211/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

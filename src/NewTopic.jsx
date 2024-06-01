@@ -24,7 +24,7 @@ const NewTopic = () => {
 
     const fetchUserID = async () => {
       try {
-        const response = await fetch(`https://localhost:7211/users/${user}`);
+        const response = await fetch(`http://localhost:7211/users/${user}`);
         if (response.ok) {
           const userData = await response.json();
           setUserID(userData.userID);
@@ -49,7 +49,7 @@ const NewTopic = () => {
     };
 
     try {
-      const response = await fetch('https://localhost:7211/topics', {
+      const response = await fetch('http://localhost:7211/topics', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

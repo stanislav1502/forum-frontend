@@ -23,7 +23,7 @@ const Header = () => {
       const username = getCookie('user');
       if (username) {
         try {
-          const response = await fetch(`https://localhost:7211/users/${username}`);
+          const response = await fetch(`http://localhost:7211/users/${username}`);
           if (response.ok) {
             const data = await response.json();
             setUser(username);
