@@ -33,3 +33,7 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/forum-fr:latest
+
+    - name: Log out of Docker Hub
+      if: always()
+      run: docker logout
