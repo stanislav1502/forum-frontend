@@ -32,4 +32,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/mse2024-forum-fe:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/forum-fr:latest
